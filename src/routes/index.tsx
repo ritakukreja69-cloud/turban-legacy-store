@@ -12,6 +12,7 @@ import catHeavyRubia from "@/assets/cat-heavy-rubia.jpg";
 import catDumala from "@/assets/cat-dumala.jpg";
 import catPatka from "@/assets/cat-patka.jpg";
 import catAccessories from "@/assets/cat-accessories.jpg";
+import turbanVideo from "@/assets/turban-tying.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
