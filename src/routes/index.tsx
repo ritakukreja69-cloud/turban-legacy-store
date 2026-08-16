@@ -12,6 +12,7 @@ import catHeavyRubia from "@/assets/cat-heavy-rubia.jpg";
 import catDumala from "@/assets/cat-dumala.jpg";
 import catPatka from "@/assets/cat-patka.jpg";
 import catAccessories from "@/assets/cat-accessories.jpg";
+import turbanVideo from "@/assets/turban-tying.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -322,6 +323,70 @@ function Index() {
         </div>
       </section>
 
+      {/* The Art of Tying — 3D video showcase */}
+      <section
+        id="art"
+        className="relative overflow-hidden bg-navy-deep py-20 text-primary-foreground"
+      >
+        <div className="pointer-events-none absolute -top-40 -right-40 h-[28rem] w-[28rem] rounded-full border border-gold/20 ring-spin" />
+        <div className="pointer-events-none absolute -bottom-52 -left-40 h-[32rem] w-[32rem] rounded-full border border-gold/10 ring-spin" />
+
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:grid-cols-2">
+          <div className="reveal">
+            <Ornament className="justify-start" />
+            <h2 className="mt-4 font-display text-4xl tracking-[0.12em] text-gold uppercase">
+              The Art of Tying
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/80">
+              Watch how our fabric moves — the fall, the sheen and the crisp pech that only
+              a truly premium dastar can hold. Every metre is chosen so the drape sits
+              right, all day long.
+            </p>
+            <ul className="mt-7 space-y-3 text-sm text-primary-foreground/80">
+              {["Feather-light weave that breathes", "Colour-fast, wash after wash", "Holds a sharp, dignified shape"].map(
+                (t) => (
+                  <li key={t} className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {t}
+                  </li>
+                ),
+              )}
+            </ul>
+            <a
+              href="#categories"
+              className="mt-8 inline-flex items-center gap-3 border border-gold/60 px-7 py-3.5 text-xs font-semibold tracking-[0.2em] text-gold uppercase transition-all hover:scale-105 hover:bg-gold hover:text-navy-deep"
+            >
+              Shop the Fabric <span>›</span>
+            </a>
+          </div>
+
+          <div className="reveal stage-3d flex justify-center">
+            <div className="drift-3d relative">
+              <div className="shine-3d overflow-hidden rounded-[2rem] border border-gold/40 bg-card/10 p-2 shadow-[0_50px_90px_-35px_rgba(0,0,0,0.8)]">
+                <video
+                  src={turbanVideo.url}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="A Sikh man tying a royal blue turban"
+                  className="h-[26rem] w-[15rem] rounded-[1.6rem] object-cover md:h-[32rem] md:w-[18rem]"
+                />
+              </div>
+              <div
+                className="absolute -right-6 -bottom-6 rounded-md border border-gold/40 bg-navy-deep/95 px-5 py-3 text-center"
+                style={{ transform: "translateZ(70px)" }}
+              >
+                <p className="font-display text-2xl leading-none text-gold">100+</p>
+                <p className="text-[9px] tracking-[0.22em] text-primary-foreground/70 uppercase">
+                  shades in store
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Categories — 3D cards */}
       <section id="categories" className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-5">
@@ -337,7 +402,7 @@ function Index() {
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORIES.map((c) => (
               <div key={c.name} className="reveal card-3d">
-                <article className="card-3d-inner group overflow-hidden rounded-md border border-gold/25 bg-card">
+                <article className="card-3d-deep group overflow-hidden rounded-md border border-gold/25 bg-card">
                   <div className="relative overflow-hidden">
                     <img
                       src={c.img}
