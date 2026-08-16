@@ -45,27 +45,78 @@ const SHADES: { code: string; hex: string }[] = [
   { code: "1640", hex: "#e8283a" }, { code: "1662", hex: "#2a2a2a" }, { code: "1160", hex: "#7a7a7a" },
 ];
 
-export function ColourPalette() {
+import { useState } from "react";
+
+function Swatch({ hex, code, size }: { hex: string; code: string; size: string }) {
   return (
-    <div>
-      <div className="grid grid-cols-6 gap-2 sm:grid-cols-10 md:grid-cols-12">
-        {SHADES.map((s) => (
-          <div key={s.code} className="group relative">
-            <div
-              className="aspect-square w-full rounded-sm ring-1 ring-navy/10 transition-transform duration-200 group-hover:scale-110 group-hover:ring-gold"
-              style={{ backgroundColor: s.hex }}
-              title={`Shade ${s.code}`}
-            />
-            <span className="pointer-events-none absolute inset-x-0 -bottom-5 text-center text-[10px] tracking-wide text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
-              {s.code}
-            </span>
-          </div>
-        ))}
-      </div>
-      <p className="mt-8 text-center text-sm text-muted-foreground">
-        {SHADES.length}+ shades shown. Over 100 colours available in store — shades are
-        indicative and may vary slightly from actual fabric.
-      </p>
+    <div className="group relative">
+      <div
+        className={`${size} w-full rounded-full ring-1 ring-navy/10 transition-transform duration-200 group-hover:scale-125 group-hover:ring-2 group-hover:ring-gold`}
+        style={{ backgroundColor: hex }}
+        title={`Shade ${code}`}
+      />
     </div>
+  );
+}
+
+export function ColourPaletteCard() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <div className="card-3d w-full max-w-sm">
+        <div className="card-3d-inner rounded-md border border-gold/40 bg-card/95 p-5 shadow-[var(--shadow-soft)] backdrop-blur">
+          <p className="text-center text-gold">✦</p>
+          <h3 className="mt-1 text-center font-display text-xl tracking-[0.18em] text-navy uppercase">
+            Colour Palette
+          </h3>
+          <div className="mt-4 grid grid-cols-10 gap-1.5">
+            {SHADES.slice(0, 60).map((s) => (
+              <Swatch key={s.code} hex={s.hex} code={s.code} size="aspect-square" />
+            ))}
+          </div>
+          <button
+            onClick={() => setOpen(true)}
+            className="mt-5 w-full rounded-sm bg-navy-deep py-3 text-[11px] font-semibold tracking-[0.18em] text-primary-foreground uppercase transition-colors hover:bg-navy"
+          >
+            View all 100+ colours
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-navy-deep/70 p-4 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="animate-pop-in max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-md border border-gold/40 bg-card p-6 shadow-[var(--shadow-soft)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between">
+              <h3 className="font-display text-2xl tracking-[0.16em] text-navy uppercase">
+                All Colours
+              </h3>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close colour palette"
+                className="text-xl text-muted-foreground transition-colors hover:text-navy"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="mt-6 grid grid-cols-8 gap-2 sm:grid-cols-12">
+              {SHADES.map((s) => (
+                <Swatch key={s.code} hex={s.hex} code={s.code} size="aspect-square" />
+              ))}
+            </div>
+            <p className="mt-6 text-center text-xs text-muted-foreground">
+              {SHADES.length} shades shown — over 100 colours available in store. Screen
+              colours are indicative and may vary slightly from the actual fabric.
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
