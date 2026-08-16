@@ -158,5 +158,29 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@utility text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility section-rule {
+  position: relative;
+}
+
+@utility paisley-border {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0 2px,
+    transparent 2px 14px
+  );
 }
