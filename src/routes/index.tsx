@@ -394,7 +394,7 @@ function Index() {
                       background: `linear-gradient(140deg, ${p.shade}, ${p.shade}cc 60%, #ffffff22)`,
                     }}
                   >
-                    <span className="card-3d-layer absolute bottom-3 left-4 text-[10px] tracking-[0.2em] text-white/90 uppercase mix-blend-difference">
+                    <span className="card-3d-layer absolute bottom-3 left-3 rounded-sm bg-navy-deep/85 px-2.5 py-1 text-[10px] tracking-[0.2em] text-gold uppercase">
                       {p.quality}
                     </span>
                   </div>
