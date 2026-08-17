@@ -4,7 +4,7 @@ import { VideoFrame } from "@/components/VideoFrame";
 import { useReveal } from "@/hooks/use-reveal";
 import { PRODUCTS, VIDEOS, whatsappLink } from "@/lib/catalog";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "All Turban Fabrics | Qualities & Brands | House of Turbans" },
