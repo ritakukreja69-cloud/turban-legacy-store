@@ -1,18 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ColourPaletteCard } from "@/components/ColourPalette";
+import { Ornament, SiteFooter, SiteNav } from "@/components/SiteChrome";
+import { VideoFrame } from "@/components/VideoFrame";
 import { useReveal } from "@/hooks/use-reveal";
+import { PRODUCTS, VIDEOS, whatsappLink } from "@/lib/catalog";
 import heroTurban from "@/assets/hero-turban.jpg";
 import legacyStore from "@/assets/legacy-store.jpg";
 import fabricStack from "@/assets/fabric-stack.jpg";
 import sardarBoy from "@/assets/sardar-boy.png";
-import catFullVoile from "@/assets/cat-full-voile.jpg";
-import catRubia from "@/assets/cat-rubia.jpg";
-import catHeavyRubia from "@/assets/cat-heavy-rubia.jpg";
-import catDumala from "@/assets/cat-dumala.jpg";
-import catPatka from "@/assets/cat-patka.jpg";
-import catAccessories from "@/assets/cat-accessories.jpg";
-import turbanVideo from "@/assets/turban-tying.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Mumbai's trusted turban retailer since 1970. Premium dastar fabrics in 100+ colours — Full Voile, Rubia, Malmal, Dumala, Patkas and accessories, shipped worldwide.",
+          "Mumbai's trusted turban retailer since 1970. Premium dastar fabrics in 100+ colours — Viole, Full Viole, Soft Voile, Malmal and Rubia from Kohinoor, Sundar and Deepak.",
       },
       { property: "og:title", content: "House of Turbans | Tradition. Quality. Trust." },
       {
@@ -36,56 +31,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CATEGORIES = [
-  {
-    name: "Full Voile Turbans",
-    img: catFullVoile,
-    blurb: "Light, airy and easy to tie — the everyday favourite.",
-    price: "₹75 / m",
-  },
-  {
-    name: "Rubia Voile Turbans",
-    img: catRubia,
-    blurb: "Soft matte finish with a rich, structured drape.",
-    price: "₹90 / m",
-  },
-  {
-    name: "Heavy Rubia Turbans",
-    img: catHeavyRubia,
-    blurb: "Dense weave that holds a crisp, formal shape.",
-    price: "₹110 / m",
-  },
-  {
-    name: "Dumala Fabric",
-    img: catDumala,
-    blurb: "Long-length traditional cloth for dumala styles.",
-    price: "₹130 / m",
-  },
-  {
-    name: "Patkas",
-    img: catPatka,
-    blurb: "Bright, comfortable patkas for Sikh children.",
-    price: "₹150 each",
-  },
-  {
-    name: "Turban Accessories",
-    img: catAccessories,
-    blurb: "Kalgi, kanga, fifty bands and finishing touches.",
-    price: "From ₹99",
-  },
-];
-
-const FEATURED = [
-  { name: "Rose Pink Full Voile", shade: "#e0426b", quality: "Full Voile", price: "₹130" },
-  { name: "Azure Blue Full Voile", shade: "#2a5bc9", quality: "Full Voile", price: "₹130" },
-  { name: "Regal Yellow Full Voile", shade: "#e8a82a", quality: "Full Voile", price: "₹130" },
-  { name: "Royal Red Rubia", shade: "#c9243a", quality: "Rubia Voile", price: "₹150" },
-  { name: "Ocean Green Voile", shade: "#1f7a8a", quality: "Soft Voile", price: "₹120" },
-  { name: "Dashmesh Neela Ghorra", shade: "#1f2a4a", quality: "Full Voile", price: "₹160" },
-  { name: "Kesari Saffron Malmal", shade: "#e07a1f", quality: "Malmal", price: "₹140" },
-  { name: "Ivory White Rubia", shade: "#f0f0f0", quality: "Rubia", price: "₹150" },
-];
-
 const TRUST = [
   { title: "50+ Years", sub: "of legacy" },
   { title: "Premium", sub: "quality fabrics" },
@@ -93,136 +38,123 @@ const TRUST = [
   { title: "Serving", sub: "worldwide" },
 ];
 
-const QUALITIES = ["Viole", "Full Viole", "Soft Voile", "Malmal", "Rubia"];
-const BRANDS = ["Kohinoor Hira", "Kohinoor Rubia", "Sundar Rubia", "Deepak Rubia"];
+const QUALITIES = PRODUCTS.filter((p) => p.kind === "Quality");
+const BRANDS = PRODUCTS.filter((p) => p.kind === "Brand");
 
-const VALUES = [
-  { title: "Finest Fabrics", sub: "Carefully selected for comfort & elegance" },
-  { title: "Vibrant Colours", sub: "More than 100 shades to choose from" },
-  { title: "Authentic & Trusted", sub: "A legacy built on trust, quality & service" },
-  { title: "Customer First", sub: "Dedicated support & personal attention" },
-];
-
-function Ornament({ className = "" }: { className?: string }) {
+function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <span className="h-px w-14 bg-gold/50" />
-      <span className="text-gold">✦</span>
-      <span className="h-px w-14 bg-gold/50" />
+    <div className="reveal card-3d">
+      <article className="card-3d-deep group h-full overflow-hidden rounded-md border border-gold/25 bg-card">
+        <div className="relative overflow-hidden">
+          <img
+            src={p.img}
+            alt={`${p.name} turban fabric`}
+            width={800}
+            height={800}
+            loading="lazy"
+            className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <span className="card-3d-layer absolute top-4 left-4 rounded-sm bg-navy-deep/90 px-3 py-1 text-[10px] tracking-[0.18em] text-gold uppercase">
+            {p.kind}
+          </span>
+        </div>
+        <div className="card-3d-layer p-6">
+          <h3 className="font-display text-xl tracking-[0.1em] text-navy uppercase">
+            {p.name}
+          </h3>
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{p.tagline}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <Link
+              to="/products/$slug"
+              params={{ slug: p.slug }}
+              className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-gold uppercase"
+            >
+              View details <span>→</span>
+            </Link>
+            <a
+              href={whatsappLink(
+                `Hello House of Turbans, I would like to enquire about ${p.name} turban fabric.`,
+              )}
+              target="_blank"
+              rel="noreferrer"
+              className="ml-auto rounded-sm border border-gold/60 px-3 py-1.5 text-[10px] tracking-[0.16em] text-navy uppercase transition-colors hover:bg-gold hover:text-navy-deep"
+            >
+              Enquire
+            </a>
+          </div>
+        </div>
+      </article>
     </div>
   );
 }
 
-function Nav() {
-  const [open, setOpen] = useState(false);
-  const [mobile, setMobile] = useState(false);
-
+function VideoSection({
+  id,
+  title,
+  body,
+  video,
+  label,
+  flip,
+  dark,
+  cta,
+  badge,
+}: {
+  id?: string;
+  title: string;
+  body: string;
+  video: string;
+  label: string;
+  flip?: boolean;
+  dark?: boolean;
+  cta?: { text: string; message: string };
+  badge?: { top: string; bottom: string };
+}) {
   return (
-    <header className="sticky top-0 z-50 bg-navy-deep/95 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <a href="#home" className="flex items-center gap-3">
-          <span className="text-2xl text-gold">☬</span>
-          <span className="leading-none">
-            <span className="block font-display text-[10px] tracking-[0.35em] text-gold">
-              HOUSE OF
-            </span>
-            <span className="block font-display text-xl tracking-[0.18em] text-primary-foreground">
-              TURBANS
-            </span>
-            <span className="block text-[9px] tracking-[0.3em] text-gold-soft/70">
-              — SINCE 1970 —
-            </span>
-          </span>
-        </a>
-
-        <ul className="hidden items-center gap-7 lg:flex">
-          <li>
-            <a href="#home" className="nav-link">
-              Home
-            </a>
-          </li>
-          <li
-            className="relative"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
+    <section
+      id={id}
+      className={`relative overflow-hidden py-20 ${dark ? "bg-navy-deep text-primary-foreground" : "bg-background"}`}
+    >
+      <div
+        className={`pointer-events-none absolute -top-40 h-[28rem] w-[28rem] rounded-full border ring-spin ${dark ? "border-gold/20" : "border-gold/15"} ${flip ? "-left-40" : "-right-40"}`}
+      />
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:grid-cols-2">
+        <div className={`reveal ${flip ? "md:order-2" : ""}`}>
+          <Ornament className="justify-start" />
+          <h2
+            className={`mt-4 font-display text-4xl tracking-[0.12em] uppercase ${dark ? "text-gold" : "text-navy"}`}
           >
-            <button className="nav-link flex items-center gap-1.5" onClick={() => setOpen((o) => !o)}>
-              Products <span className={`transition-transform ${open ? "rotate-180" : ""}`}>⌄</span>
-            </button>
-            {open && (
-              <div className="animate-pop-in absolute left-1/2 top-full w-64 -translate-x-1/2 pt-4">
-                <ul className="overflow-hidden rounded-md border border-gold/30 bg-card shadow-[var(--shadow-soft)]">
-                  {CATEGORIES.map((c) => (
-                    <li key={c.name}>
-                      <a
-                        href="#categories"
-                        onClick={() => setOpen(false)}
-                        className="block border-b border-border/60 px-5 py-3 text-xs tracking-[0.1em] text-navy uppercase transition-colors last:border-0 hover:bg-secondary hover:text-gold"
-                      >
-                        {c.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </li>
-          <li>
-            <a href="#legacy" className="nav-link">
-              Our Legacy
-            </a>
-          </li>
-          <li>
-            <a href="#colours" className="nav-link">
-              Shade Card
-            </a>
-          </li>
-          <li>
-            <a href="#visit" className="nav-link">
-              Contact
-            </a>
-          </li>
-        </ul>
-
-        <div className="flex items-center gap-3">
-          <a
-            href="tel:+919821182496"
-            className="rounded-sm bg-gradient-to-r from-gold/90 to-gold-soft px-5 py-2.5 text-[11px] font-semibold tracking-[0.14em] text-navy-deep uppercase transition-transform hover:scale-105"
+            {title}
+          </h2>
+          <p
+            className={`mt-4 max-w-md text-sm leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}
           >
-            Call Us
-          </a>
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setMobile((m) => !m)}
-            className="text-2xl text-gold lg:hidden"
-          >
-            ☰
-          </button>
-        </div>
-      </nav>
-
-      {mobile && (
-        <ul className="animate-pop-in space-y-1 border-t border-gold/20 px-5 pb-5 lg:hidden">
-          {["#home", "#categories", "#products", "#legacy", "#colours", "#visit"].map(
-            (href, i) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  onClick={() => setMobile(false)}
-                  className="block py-2.5 text-xs tracking-[0.16em] text-primary-foreground/85 uppercase hover:text-gold"
-                >
-                  {
-                    ["Home", "Products", "Shop Fabrics", "Our Legacy", "Shade Card", "Contact"][
-                      i
-                    ]
-                  }
-                </a>
-              </li>
-            ),
+            {body}
+          </p>
+          {cta && (
+            <a
+              href={whatsappLink(cta.message)}
+              target="_blank"
+              rel="noreferrer"
+              className={`mt-8 inline-flex items-center gap-3 border px-7 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all hover:scale-105 ${
+                dark
+                  ? "border-gold/60 text-gold hover:bg-gold hover:text-navy-deep"
+                  : "border-navy/40 text-navy hover:bg-navy hover:text-primary-foreground"
+              }`}
+            >
+              {cta.text} <span>›</span>
+            </a>
           )}
-        </ul>
-      )}
-    </header>
+        </div>
+        <div className={`reveal ${flip ? "md:order-1" : ""}`}>
+          <VideoFrame
+            src={video}
+            label={label}
+            className="h-[22rem] w-full md:h-[28rem]"
+            badge={badge}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -231,7 +163,7 @@ function Index() {
 
   return (
     <div id="home" className="min-h-screen overflow-x-hidden bg-background">
-      <Nav />
+      <SiteNav />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-sand">
@@ -252,20 +184,18 @@ function Index() {
               <br />
               <span className="text-gradient-gold">Trust.</span>
             </h1>
-            <p className="reveal mt-4 font-display text-3xl italic text-navy/70">
-              Since 1970.
-            </p>
+            <p className="reveal mt-4 font-display text-3xl italic text-navy/70">Since 1970.</p>
             <div className="mt-4 h-px w-40 bg-gold/60" />
             <p className="reveal mt-6 max-w-md text-sm leading-relaxed text-navy/80">
               For over 50 years, House of Turbans has been a trusted name among Sikh and
               Punjabi families, offering premium-quality turbans and dastars.
             </p>
-            <a
-              href="#categories"
+            <Link
+              to="/products"
               className="reveal mt-8 inline-flex items-center gap-3 bg-navy px-7 py-4 text-xs font-semibold tracking-[0.2em] text-primary-foreground uppercase transition-all hover:scale-105 hover:bg-navy-deep"
             >
               Explore Collection <span className="text-gold">›</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -286,6 +216,21 @@ function Index() {
           ))}
         </div>
       </section>
+
+      {/* Video 1 — The Art of Tying */}
+      <VideoSection
+        id="art"
+        dark
+        title="The Art of Tying"
+        body="Watch how our fabric moves — the fall, the sheen and the crisp pech that only a truly premium dastar can hold. Every metre is chosen so the drape sits right, all day long."
+        video={VIDEOS.tying}
+        label="A Sikh man tying a royal blue turban"
+        badge={{ top: "100+", bottom: "shades in store" }}
+        cta={{
+          text: "Ask us anything",
+          message: "Hello House of Turbans, I would like to know more about your turban fabrics.",
+        }}
+      />
 
       {/* Shade card + little sardar ji */}
       <section id="colours" className="relative overflow-hidden bg-secondary py-16">
@@ -323,166 +268,122 @@ function Index() {
         </div>
       </section>
 
-      {/* The Art of Tying — 3D video showcase */}
-      <section
-        id="art"
-        className="relative overflow-hidden bg-navy-deep py-20 text-primary-foreground"
-      >
-        <div className="pointer-events-none absolute -top-40 -right-40 h-[28rem] w-[28rem] rounded-full border border-gold/20 ring-spin" />
-        <div className="pointer-events-none absolute -bottom-52 -left-40 h-[32rem] w-[32rem] rounded-full border border-gold/10 ring-spin" />
-
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:grid-cols-2">
-          <div className="reveal">
-            <Ornament className="justify-start" />
-            <h2 className="mt-4 font-display text-4xl tracking-[0.12em] text-gold uppercase">
-              The Art of Tying
-            </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/80">
-              Watch how our fabric moves — the fall, the sheen and the crisp pech that only
-              a truly premium dastar can hold. Every metre is chosen so the drape sits
-              right, all day long.
-            </p>
-            <ul className="mt-7 space-y-3 text-sm text-primary-foreground/80">
-              {["Feather-light weave that breathes", "Colour-fast, wash after wash", "Holds a sharp, dignified shape"].map(
-                (t) => (
-                  <li key={t} className="flex items-center gap-3">
-                    <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {t}
-                  </li>
-                ),
-              )}
-            </ul>
-            <a
-              href="#categories"
-              className="mt-8 inline-flex items-center gap-3 border border-gold/60 px-7 py-3.5 text-xs font-semibold tracking-[0.2em] text-gold uppercase transition-all hover:scale-105 hover:bg-gold hover:text-navy-deep"
-            >
-              Shop the Fabric <span>›</span>
-            </a>
-          </div>
-
-          <div className="reveal stage-3d flex justify-center">
-            <div className="drift-3d relative">
-              <div className="shine-3d overflow-hidden rounded-[2rem] border border-gold/40 bg-card/10 p-2 shadow-[0_50px_90px_-35px_rgba(0,0,0,0.8)]">
-                <video
-                  src={turbanVideo.url}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label="A Sikh man tying a royal blue turban"
-                  className="h-[26rem] w-[15rem] rounded-[1.6rem] object-cover md:h-[32rem] md:w-[18rem]"
-                />
-              </div>
-              <div
-                className="absolute -right-6 -bottom-6 rounded-md border border-gold/40 bg-navy-deep/95 px-5 py-3 text-center"
-                style={{ transform: "translateZ(70px)" }}
-              >
-                <p className="font-display text-2xl leading-none text-gold">100+</p>
-                <p className="text-[9px] tracking-[0.22em] text-primary-foreground/70 uppercase">
-                  shades in store
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories — 3D cards */}
+      {/* Qualities */}
       <section id="categories" className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Ornament className="justify-center" />
           <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
-            Shop by Category
+            Available Qualities
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
-            Handpicked premium turban fabrics and accessories — every quality, every
-            occasion.
+            Viole, Full Viole, Soft Voile, Malmal and Rubia — each with its own texture,
+            feel and finish. Open a fabric to see its video and full colour range.
           </p>
-
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c) => (
-              <div key={c.name} className="reveal card-3d">
-                <article className="card-3d-deep group overflow-hidden rounded-md border border-gold/25 bg-card">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={c.img}
-                      alt={c.name}
-                      width={800}
-                      height={800}
-                      loading="lazy"
-                      className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <span className="card-3d-layer absolute top-4 left-4 rounded-sm bg-navy-deep/90 px-3 py-1 text-[10px] tracking-[0.18em] text-gold uppercase">
-                      {c.price}
-                    </span>
-                  </div>
-                  <div className="card-3d-layer p-6">
-                    <h3 className="font-display text-xl tracking-[0.1em] text-navy uppercase">
-                      {c.name}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {c.blurb}
-                    </p>
-                    <a
-                      href="#products"
-                      className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-gold uppercase"
-                    >
-                      Explore Category <span>→</span>
-                    </a>
-                  </div>
-                </article>
-              </div>
+            {QUALITIES.map((p) => (
+              <ProductCard key={p.slug} p={p} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured products */}
+      {/* Video 2 — inside the shop */}
+      <VideoSection
+        title="Inside Our Shop"
+        body="Shelf after shelf of turban cloth at Mahatma Gandhi Market, King Circle. Fifty years of stocking, folding and cutting fabric for families who keep coming back."
+        video={VIDEOS.shop}
+        label="Camera gliding over stacks of colourful turban fabric in the shop"
+        flip
+        cta={{
+          text: "Check availability",
+          message: "Hello House of Turbans, is my shade available in stock right now?",
+        }}
+      />
+
+      {/* Brands */}
       <section id="products" className="bg-secondary py-20">
         <div className="mx-auto max-w-7xl px-5">
           <Ornament className="justify-center" />
           <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
-            Best Selling Fabrics
+            Available Brands
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
-            Popular shades from our shelves in Mahatma Gandhi Market — call us to order any
-            length.
+            Kohinoor Hira, Kohinoor Rubia, Sundar Rubia and Deepak Rubia — trusted mills our
+            customers ask for by name.
           </p>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURED.map((p) => (
-              <div key={p.name} className="reveal card-3d">
-                <article className="card-3d-inner overflow-hidden rounded-md border border-gold/25 bg-card">
-                  <div
-                    className="relative h-44 w-full"
-                    style={{
-                      background: `linear-gradient(140deg, ${p.shade}, ${p.shade}cc 60%, #ffffff22)`,
-                    }}
-                  >
-                    <span className="card-3d-layer absolute bottom-3 left-3 rounded-sm bg-navy-deep/85 px-2.5 py-1 text-[10px] tracking-[0.2em] text-gold uppercase">
-                      {p.quality}
-                    </span>
-                  </div>
-                  <div className="card-3d-layer p-5">
-                    <h3 className="font-display text-lg leading-tight text-navy">{p.name}</h3>
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-navy">
-                        {p.price} <span className="text-xs font-normal text-muted-foreground">per m</span>
-                      </span>
-                      <a
-                        href="tel:+919821182496"
-                        className="rounded-sm border border-gold/60 px-3 py-1.5 text-[10px] tracking-[0.16em] text-navy uppercase transition-colors hover:bg-gold hover:text-navy-deep"
-                      >
-                        Enquire
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              </div>
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {BRANDS.map((p) => (
+              <ProductCard key={p.slug} p={p} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* Video 3 — wedding */}
+      <VideoSection
+        dark
+        title="For the Big Day"
+        body="Weddings, Anand Karaj and family celebrations call for a turban with presence. Our heavier rubia ranges hold a tall, sharp shape from the milni right through to the last dance."
+        video={VIDEOS.wedding}
+        label="A Sikh groom in a maroon wedding turban with a gold kalgi"
+        cta={{
+          text: "Plan a wedding turban",
+          message: "Hello House of Turbans, I need turban fabric for a wedding. Please guide me.",
+        }}
+      />
+
+      {/* Video 4 — voile drape */}
+      <VideoSection
+        title="How Voile Falls"
+        body="Light, open and easy to tie. Watch the way our voile catches the air — the reason it is the everyday choice for thousands of our customers."
+        video={VIDEOS.voile}
+        label="Hands unfolding a saffron voile turban fabric in sunlight"
+        flip
+        cta={{
+          text: "Enquire about voile",
+          message: "Hello House of Turbans, I would like to enquire about Voile fabric.",
+        }}
+      />
+
+      {/* Video 5 — malmal texture */}
+      <VideoSection
+        dark
+        title="Malmal, Up Close"
+        body="A macro look at fine malmal muslin — the featherweight weave that keeps you cool through Mumbai's summer and drapes beautifully in traditional dumala styles."
+        video={VIDEOS.malmal}
+        label="Macro shot of fine white malmal cotton weave"
+        flip
+        cta={{
+          text: "Enquire about malmal",
+          message: "Hello House of Turbans, I would like to enquire about Malmal fabric.",
+        }}
+      />
+
+      {/* Video 6 — patka */}
+      <VideoSection
+        title="Patkas for Little Ones"
+        body="Soft, bright and comfortable cloth for children — cut to size so it ties quickly before school and stays put all day."
+        video={VIDEOS.patka}
+        label="A father tying an orange patka for his young son"
+        cta={{
+          text: "Enquire about patkas",
+          message: "Hello House of Turbans, I would like to enquire about patka fabric for my child.",
+        }}
+      />
+
+      {/* Video 7 — rubia */}
+      <VideoSection
+        dark
+        title="Rubia in Motion"
+        body="Dense, matte and deeply coloured. Rubia holds its shape like no other cloth on our shelves — see how the light sits on the weave."
+        video={VIDEOS.rubia}
+        label="Deep red rubia turban fabric turning in studio light"
+        flip
+        cta={{
+          text: "Enquire about rubia",
+          message: "Hello House of Turbans, I would like to enquire about Rubia fabric.",
+        }}
+      />
 
       {/* Legacy */}
       <section id="legacy" className="bg-background py-20">
@@ -563,8 +464,14 @@ function Index() {
                   </h3>
                   <ul className="mt-5 space-y-2.5 text-sm text-foreground/80">
                     {QUALITIES.map((q) => (
-                      <li key={q} className="flex items-center gap-3">
-                        <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {q}
+                      <li key={q.slug}>
+                        <Link
+                          to="/products/$slug"
+                          params={{ slug: q.slug }}
+                          className="flex items-center gap-3 hover:text-gold"
+                        >
+                          <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {q.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -577,8 +484,14 @@ function Index() {
                   </h3>
                   <ul className="mt-5 space-y-2.5 text-sm text-foreground/80">
                     {BRANDS.map((b) => (
-                      <li key={b} className="flex items-center gap-3">
-                        <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {b}
+                      <li key={b.slug}>
+                        <Link
+                          to="/products/$slug"
+                          params={{ slug: b.slug }}
+                          className="flex items-center gap-3 hover:text-gold"
+                        >
+                          <span className="h-1.5 w-1.5 rotate-45 bg-gold" /> {b.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -619,9 +532,7 @@ function Index() {
               Visit Us
             </h2>
             <div className="mt-6 space-y-1 text-sm leading-relaxed text-primary-foreground/85">
-              <p className="font-display text-xl text-primary-foreground">
-                House of Turbans
-              </p>
+              <p className="font-display text-xl text-primary-foreground">House of Turbans</p>
               <p>Shop Nos. 95 &amp; 96</p>
               <p>Mahatma Gandhi Market</p>
               <p>King Circle, Mumbai – 400022</p>
@@ -632,6 +543,14 @@ function Index() {
               className="mt-6 inline-block font-display text-2xl text-gold hover:opacity-80"
             >
               +91 98211 82496
+            </a>
+            <a
+              href={whatsappLink("Hello House of Turbans, I would like to place an enquiry.")}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 block w-fit bg-gradient-to-r from-gold/90 to-gold-soft px-7 py-3.5 text-xs font-semibold tracking-[0.2em] text-navy-deep uppercase transition-transform hover:scale-105"
+            >
+              Message us on WhatsApp
             </a>
           </div>
           <div className="reveal flex flex-col justify-center">
@@ -648,34 +567,13 @@ function Index() {
                 <br />
                 Preserving Tradition,
               </p>
-              <p className="font-display text-2xl italic text-gold">
-                One Turban at a Time.
-              </p>
+              <p className="font-display text-2xl italic text-gold">One Turban at a Time.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values + footer */}
-      <footer className="bg-secondary">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          {VALUES.map((v) => (
-            <div key={v.title} className="reveal flex gap-4">
-              <span className="mt-1 text-gold">✦</span>
-              <div>
-                <p className="font-display text-base tracking-[0.1em] text-navy uppercase">
-                  {v.title}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">{v.sub}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="paisley-border h-1.5" />
-        <p className="bg-navy-deep py-5 text-center text-[11px] tracking-[0.18em] text-primary-foreground/60 uppercase">
-          © {new Date().getFullYear()} House of Turbans · Mumbai, India
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
