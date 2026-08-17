@@ -150,7 +150,7 @@ function VideoSection({
             src={video}
             label={label}
             className="h-[22rem] w-full md:h-[28rem]"
-            badge={badge}
+            {...(badge ? { badge } : {})}
           />
         </div>
       </div>

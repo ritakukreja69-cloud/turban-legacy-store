@@ -186,7 +186,7 @@ function ProductPage() {
                       {c.name} {product.name}
                     </h3>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      Cut to any length · {product.specs[0].value.toLowerCase()}
+                      Cut to any length · {product.specs[0]?.value.toLowerCase()}
                     </p>
                     <a
                       href={whatsappLink(
