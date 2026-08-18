@@ -231,38 +231,19 @@ function Index() {
         }}
       />
 
-      {/* Shade card + little sardar ji */}
-      <section id="colours" className="relative overflow-hidden bg-secondary py-16">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 md:grid-cols-[1fr_auto_auto]">
-          <div className="reveal">
-            <Ornament className="justify-start" />
-            <h2 className="mt-4 font-display text-4xl tracking-[0.1em] text-navy uppercase">
-              Choose your colour
-            </h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-              More than 100 shades of premium turban fabric — for daily wear, religious
-              occasions, weddings and celebrations. Tap a swatch to see it up close.
-            </p>
-          </div>
-
-          <div className="reveal relative hidden justify-center md:flex">
-            <div className="absolute -top-2 right-0 z-10 animate-float-soft rounded-2xl border border-gold/40 bg-card px-4 py-2 text-center font-display text-sm text-navy shadow-[var(--shadow-soft)]">
-              Choose your
-              <br />
-              favourite colour!
-            </div>
-            <img
-              src={sardarBoy}
-              alt="Young Sikh boy in a navy patka pointing at the colour palette"
-              width={720}
-              height={928}
-              loading="lazy"
-              className="h-64 w-auto object-contain drop-shadow-xl"
-            />
-          </div>
-
-          <div className="reveal flex justify-center md:justify-end">
-            <ColourPaletteCard />
+      {/* Colour chart */}
+      <section id="colours" className="relative overflow-hidden bg-secondary py-12">
+        <div className="mx-auto max-w-6xl px-5">
+          <Ornament className="justify-center" />
+          <h2 className="reveal mt-3 text-center font-display text-3xl tracking-[0.1em] text-navy uppercase md:text-4xl">
+            Choose your colour
+          </h2>
+          <p className="reveal mx-auto mt-2 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+            Our full mill colour chart — every shade we stock, by its shade number. Note the
+            number and message us to check availability.
+          </p>
+          <div className="reveal mt-8">
+            <ColourChart />
           </div>
         </div>
       </section>
