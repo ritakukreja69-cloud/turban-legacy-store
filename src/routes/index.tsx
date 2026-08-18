@@ -183,9 +183,9 @@ function Index() {
           className="absolute inset-y-0 right-0 h-full w-full object-cover object-right md:w-[68%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-sand via-sand/90 to-transparent md:via-sand/70" />
-        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-5 py-14 md:py-14">
           <div className="max-w-xl">
-            <h1 className="reveal font-display text-5xl leading-[0.95] font-semibold tracking-tight text-navy md:text-7xl">
+            <h1 className="reveal font-display text-5xl leading-[0.95] font-semibold tracking-tight text-navy md:text-6xl">
               Tradition.
               <br />
               Quality.
@@ -210,7 +210,7 @@ function Index() {
 
       {/* Trust bar */}
       <section className="bg-navy-deep">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-6 px-5 py-7 md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-6 px-5 py-7 md:grid-cols-4">
           {TRUST.map((t, i) => (
             <div
               key={t.title}
@@ -260,17 +260,17 @@ function Index() {
       </section>
 
       {/* Qualities */}
-      <section id="categories" className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="categories" className="bg-background py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Available Qualities
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
             Viole, Full Viole, Soft Voile, Malmal and Rubia — each with its own texture,
             feel and finish. Open a fabric to see its video and full colour range.
           </p>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {QUALITIES.map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
@@ -294,17 +294,17 @@ function Index() {
       />
 
       {/* Brands */}
-      <section id="products" className="bg-secondary py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="products" className="bg-secondary py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Available Brands
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
             Kohinoor Hira, Kohinoor Rubia, Sundar Rubia and Deepak Rubia — trusted mills our
             customers ask for by name.
           </p>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {BRANDS.map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
@@ -389,11 +389,11 @@ function Index() {
       />
 
       {/* Legacy */}
-      <section id="legacy" className="bg-background py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-2">
+      <section id="legacy" className="bg-background py-14">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
           <div className="reveal">
             <Ornament className="justify-start" />
-            <h2 className="mt-4 font-display text-4xl tracking-[0.12em] text-navy uppercase">
+            <h2 className="mt-4 font-display text-3xl tracking-[0.12em] text-navy uppercase">
               Our Legacy
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/80">
@@ -439,10 +439,10 @@ function Index() {
       </section>
 
       {/* Collection */}
-      <section id="collection" className="bg-secondary py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="collection" className="bg-secondary py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Our Collection
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
@@ -528,8 +528,8 @@ function Index() {
       </section>
 
       {/* Visit */}
-      <section id="visit" className="bg-navy-deep py-20 text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-2">
+      <section id="visit" className="bg-navy-deep py-14 text-primary-foreground">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2">
           <div className="reveal">
             <h2 className="font-display text-3xl tracking-[0.14em] text-gold uppercase">
               Visit Us
