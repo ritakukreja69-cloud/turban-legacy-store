@@ -92,7 +92,9 @@ function VideoSection({
   title,
   body,
   video,
+  video2,
   label,
+  label2,
   flip,
   dark,
   cta,
@@ -102,7 +104,9 @@ function VideoSection({
   title: string;
   body: string;
   video: string;
+  video2: string;
   label: string;
+  label2: string;
   flip?: boolean;
   dark?: boolean;
   cta?: { text: string; message: string };
@@ -111,21 +115,21 @@ function VideoSection({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden py-20 ${dark ? "bg-navy-deep text-primary-foreground" : "bg-background"}`}
+      className={`relative overflow-hidden py-12 ${dark ? "bg-navy-deep text-primary-foreground" : "bg-background"}`}
     >
       <div
-        className={`pointer-events-none absolute -top-40 h-[28rem] w-[28rem] rounded-full border ring-spin ${dark ? "border-gold/20" : "border-gold/15"} ${flip ? "-left-40" : "-right-40"}`}
+        className={`pointer-events-none absolute -top-40 h-[20rem] w-[20rem] rounded-full border ring-spin ${dark ? "border-gold/20" : "border-gold/15"} ${flip ? "-left-32" : "-right-32"}`}
       />
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 md:grid-cols-2">
         <div className={`reveal ${flip ? "md:order-2" : ""}`}>
           <Ornament className="justify-start" />
           <h2
-            className={`mt-4 font-display text-4xl tracking-[0.12em] uppercase ${dark ? "text-gold" : "text-navy"}`}
+            className={`mt-3 font-display text-3xl tracking-[0.12em] uppercase ${dark ? "text-gold" : "text-navy"}`}
           >
             {title}
           </h2>
           <p
-            className={`mt-4 max-w-md text-sm leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}
+            className={`mt-3 max-w-md text-sm leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}
           >
             {body}
           </p>
@@ -134,7 +138,7 @@ function VideoSection({
               href={whatsappLink(cta.message)}
               target="_blank"
               rel="noreferrer"
-              className={`mt-8 inline-flex items-center gap-3 border px-7 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all hover:scale-105 ${
+              className={`mt-6 inline-flex items-center gap-3 border px-6 py-3 text-xs font-semibold tracking-[0.2em] uppercase transition-all hover:scale-105 ${
                 dark
                   ? "border-gold/60 text-gold hover:bg-gold hover:text-navy-deep"
                   : "border-navy/40 text-navy hover:bg-navy hover:text-primary-foreground"
@@ -144,12 +148,17 @@ function VideoSection({
             </a>
           )}
         </div>
-        <div className={`reveal ${flip ? "md:order-1" : ""}`}>
+        <div className={`reveal grid grid-cols-2 gap-3 ${flip ? "md:order-1" : ""}`}>
           <VideoFrame
             src={video}
             label={label}
-            className="h-[22rem] w-full md:h-[28rem]"
+            className="h-[13rem] w-full md:h-[17rem]"
             {...(badge ? { badge } : {})}
+          />
+          <VideoFrame
+            src={video2}
+            label={label2}
+            className="h-[13rem] w-full md:h-[17rem]"
           />
         </div>
       </div>
