@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ColourPaletteCard } from "@/components/ColourPalette";
+import { ColourChart } from "@/components/ColourPalette";
 import { Ornament, SiteFooter, SiteNav } from "@/components/SiteChrome";
 import { VideoFrame } from "@/components/VideoFrame";
 import { useReveal } from "@/hooks/use-reveal";
@@ -7,7 +7,6 @@ import { PRODUCTS, VIDEOS, whatsappLink } from "@/lib/catalog";
 import heroTurban from "@/assets/hero-turban.jpg";
 import legacyStore from "@/assets/legacy-store.jpg";
 import fabricStack from "@/assets/fabric-stack.jpg";
-import sardarBoy from "@/assets/sardar-boy.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -93,7 +92,9 @@ function VideoSection({
   title,
   body,
   video,
+  video2,
   label,
+  label2,
   flip,
   dark,
   cta,
@@ -103,7 +104,9 @@ function VideoSection({
   title: string;
   body: string;
   video: string;
+  video2: string;
   label: string;
+  label2: string;
   flip?: boolean;
   dark?: boolean;
   cta?: { text: string; message: string };
@@ -112,21 +115,21 @@ function VideoSection({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden py-20 ${dark ? "bg-navy-deep text-primary-foreground" : "bg-background"}`}
+      className={`relative overflow-hidden py-12 ${dark ? "bg-navy-deep text-primary-foreground" : "bg-background"}`}
     >
       <div
-        className={`pointer-events-none absolute -top-40 h-[28rem] w-[28rem] rounded-full border ring-spin ${dark ? "border-gold/20" : "border-gold/15"} ${flip ? "-left-40" : "-right-40"}`}
+        className={`pointer-events-none absolute -top-40 h-[20rem] w-[20rem] rounded-full border ring-spin ${dark ? "border-gold/20" : "border-gold/15"} ${flip ? "-left-32" : "-right-32"}`}
       />
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 md:grid-cols-2">
         <div className={`reveal ${flip ? "md:order-2" : ""}`}>
           <Ornament className="justify-start" />
           <h2
-            className={`mt-4 font-display text-4xl tracking-[0.12em] uppercase ${dark ? "text-gold" : "text-navy"}`}
+            className={`mt-3 font-display text-3xl tracking-[0.12em] uppercase ${dark ? "text-gold" : "text-navy"}`}
           >
             {title}
           </h2>
           <p
-            className={`mt-4 max-w-md text-sm leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}
+            className={`mt-3 max-w-md text-sm leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}
           >
             {body}
           </p>
@@ -135,7 +138,7 @@ function VideoSection({
               href={whatsappLink(cta.message)}
               target="_blank"
               rel="noreferrer"
-              className={`mt-8 inline-flex items-center gap-3 border px-7 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase transition-all hover:scale-105 ${
+              className={`mt-6 inline-flex items-center gap-3 border px-6 py-3 text-xs font-semibold tracking-[0.2em] uppercase transition-all hover:scale-105 ${
                 dark
                   ? "border-gold/60 text-gold hover:bg-gold hover:text-navy-deep"
                   : "border-navy/40 text-navy hover:bg-navy hover:text-primary-foreground"
@@ -145,12 +148,17 @@ function VideoSection({
             </a>
           )}
         </div>
-        <div className={`reveal ${flip ? "md:order-1" : ""}`}>
+        <div className={`reveal grid grid-cols-2 gap-3 ${flip ? "md:order-1" : ""}`}>
           <VideoFrame
             src={video}
             label={label}
-            className="h-[22rem] w-full md:h-[28rem]"
+            className="h-[13rem] w-full md:h-[17rem]"
             {...(badge ? { badge } : {})}
+          />
+          <VideoFrame
+            src={video2}
+            label={label2}
+            className="h-[13rem] w-full md:h-[17rem]"
           />
         </div>
       </div>
@@ -175,9 +183,9 @@ function Index() {
           className="absolute inset-y-0 right-0 h-full w-full object-cover object-right md:w-[68%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-sand via-sand/90 to-transparent md:via-sand/70" />
-        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-5 py-14 md:py-14">
           <div className="max-w-xl">
-            <h1 className="reveal font-display text-5xl leading-[0.95] font-semibold tracking-tight text-navy md:text-7xl">
+            <h1 className="reveal font-display text-5xl leading-[0.95] font-semibold tracking-tight text-navy md:text-6xl">
               Tradition.
               <br />
               Quality.
@@ -202,7 +210,7 @@ function Index() {
 
       {/* Trust bar */}
       <section className="bg-navy-deep">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-6 px-5 py-7 md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-6 px-5 py-7 md:grid-cols-4">
           {TRUST.map((t, i) => (
             <div
               key={t.title}
@@ -224,7 +232,9 @@ function Index() {
         title="The Art of Tying"
         body="Watch how our fabric moves — the fall, the sheen and the crisp pech that only a truly premium dastar can hold. Every metre is chosen so the drape sits right, all day long."
         video={VIDEOS.tying}
+        video2={VIDEOS.blue}
         label="A Sikh man tying a royal blue turban"
+        label2="A royal blue dastar being tied, pech by pech"
         badge={{ top: "100+", bottom: "shades in store" }}
         cta={{
           text: "Ask us anything",
@@ -232,54 +242,35 @@ function Index() {
         }}
       />
 
-      {/* Shade card + little sardar ji */}
-      <section id="colours" className="relative overflow-hidden bg-secondary py-16">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 md:grid-cols-[1fr_auto_auto]">
-          <div className="reveal">
-            <Ornament className="justify-start" />
-            <h2 className="mt-4 font-display text-4xl tracking-[0.1em] text-navy uppercase">
-              Choose your colour
-            </h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-              More than 100 shades of premium turban fabric — for daily wear, religious
-              occasions, weddings and celebrations. Tap a swatch to see it up close.
-            </p>
-          </div>
-
-          <div className="reveal relative hidden justify-center md:flex">
-            <div className="absolute -top-2 right-0 z-10 animate-float-soft rounded-2xl border border-gold/40 bg-card px-4 py-2 text-center font-display text-sm text-navy shadow-[var(--shadow-soft)]">
-              Choose your
-              <br />
-              favourite colour!
-            </div>
-            <img
-              src={sardarBoy}
-              alt="Young Sikh boy in a navy patka pointing at the colour palette"
-              width={720}
-              height={928}
-              loading="lazy"
-              className="h-64 w-auto object-contain drop-shadow-xl"
-            />
-          </div>
-
-          <div className="reveal flex justify-center md:justify-end">
-            <ColourPaletteCard />
+      {/* Colour chart */}
+      <section id="colours" className="relative overflow-hidden bg-secondary py-12">
+        <div className="mx-auto max-w-6xl px-5">
+          <Ornament className="justify-center" />
+          <h2 className="reveal mt-3 text-center font-display text-3xl tracking-[0.1em] text-navy uppercase md:text-4xl">
+            Choose your colour
+          </h2>
+          <p className="reveal mx-auto mt-2 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+            Our full mill colour chart — every shade we stock, by its shade number. Note the
+            number and message us to check availability.
+          </p>
+          <div className="reveal mt-8">
+            <ColourChart />
           </div>
         </div>
       </section>
 
       {/* Qualities */}
-      <section id="categories" className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="categories" className="bg-background py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Available Qualities
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
             Viole, Full Viole, Soft Voile, Malmal and Rubia — each with its own texture,
             feel and finish. Open a fabric to see its video and full colour range.
           </p>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {QUALITIES.map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
@@ -292,7 +283,9 @@ function Index() {
         title="Inside Our Shop"
         body="Shelf after shelf of turban cloth at Mahatma Gandhi Market, King Circle. Fifty years of stocking, folding and cutting fabric for families who keep coming back."
         video={VIDEOS.shop}
+        video2={VIDEOS.rubia}
         label="Camera gliding over stacks of colourful turban fabric in the shop"
+        label2="Rolls of rubia turban cloth on the shop shelves"
         flip
         cta={{
           text: "Check availability",
@@ -301,17 +294,17 @@ function Index() {
       />
 
       {/* Brands */}
-      <section id="products" className="bg-secondary py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="products" className="bg-secondary py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Available Brands
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
             Kohinoor Hira, Kohinoor Rubia, Sundar Rubia and Deepak Rubia — trusted mills our
             customers ask for by name.
           </p>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {BRANDS.map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
@@ -325,7 +318,9 @@ function Index() {
         title="For the Big Day"
         body="Weddings, Anand Karaj and family celebrations call for a turban with presence. Our heavier rubia ranges hold a tall, sharp shape from the milni right through to the last dance."
         video={VIDEOS.wedding}
+        video2={VIDEOS.tying}
         label="A Sikh groom in a maroon wedding turban with a gold kalgi"
+        label2="A groom setting the final pech of his wedding turban"
         cta={{
           text: "Plan a wedding turban",
           message: "Hello House of Turbans, I need turban fabric for a wedding. Please guide me.",
@@ -337,7 +332,9 @@ function Index() {
         title="How Voile Falls"
         body="Light, open and easy to tie. Watch the way our voile catches the air — the reason it is the everyday choice for thousands of our customers."
         video={VIDEOS.voile}
+        video2={VIDEOS.malmal}
         label="Hands unfolding a saffron voile turban fabric in sunlight"
+        label2="Soft voile fabric drifting in the light"
         flip
         cta={{
           text: "Enquire about voile",
@@ -351,7 +348,9 @@ function Index() {
         title="Malmal, Up Close"
         body="A macro look at fine malmal muslin — the featherweight weave that keeps you cool through Mumbai's summer and drapes beautifully in traditional dumala styles."
         video={VIDEOS.malmal}
+        video2={VIDEOS.voile}
         label="Macro shot of fine white malmal cotton weave"
+        label2="Fine malmal muslin catching the breeze"
         flip
         cta={{
           text: "Enquire about malmal",
@@ -364,7 +363,9 @@ function Index() {
         title="Patkas for Little Ones"
         body="Soft, bright and comfortable cloth for children — cut to size so it ties quickly before school and stays put all day."
         video={VIDEOS.patka}
+        video2={VIDEOS.blue}
         label="A father tying an orange patka for his young son"
+        label2="A boy in a bright patka running in the sun"
         cta={{
           text: "Enquire about patkas",
           message: "Hello House of Turbans, I would like to enquire about patka fabric for my child.",
@@ -377,7 +378,9 @@ function Index() {
         title="Rubia in Motion"
         body="Dense, matte and deeply coloured. Rubia holds its shape like no other cloth on our shelves — see how the light sits on the weave."
         video={VIDEOS.rubia}
+        video2={VIDEOS.wedding}
         label="Deep red rubia turban fabric turning in studio light"
+        label2="Deep coloured rubia folded into a sharp turban"
         flip
         cta={{
           text: "Enquire about rubia",
@@ -386,11 +389,11 @@ function Index() {
       />
 
       {/* Legacy */}
-      <section id="legacy" className="bg-background py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-2">
+      <section id="legacy" className="bg-background py-14">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
           <div className="reveal">
             <Ornament className="justify-start" />
-            <h2 className="mt-4 font-display text-4xl tracking-[0.12em] text-navy uppercase">
+            <h2 className="mt-4 font-display text-3xl tracking-[0.12em] text-navy uppercase">
               Our Legacy
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/80">
@@ -436,10 +439,10 @@ function Index() {
       </section>
 
       {/* Collection */}
-      <section id="collection" className="bg-secondary py-20">
-        <div className="mx-auto max-w-7xl px-5">
+      <section id="collection" className="bg-secondary py-14">
+        <div className="mx-auto max-w-6xl px-5">
           <Ornament className="justify-center" />
-          <h2 className="reveal mt-4 text-center font-display text-4xl tracking-[0.12em] text-navy uppercase">
+          <h2 className="reveal mt-4 text-center font-display text-3xl tracking-[0.12em] text-navy uppercase">
             Our Collection
           </h2>
           <p className="reveal mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
@@ -525,8 +528,8 @@ function Index() {
       </section>
 
       {/* Visit */}
-      <section id="visit" className="bg-navy-deep py-20 text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-2">
+      <section id="visit" className="bg-navy-deep py-14 text-primary-foreground">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2">
           <div className="reveal">
             <h2 className="font-display text-3xl tracking-[0.14em] text-gold uppercase">
               Visit Us
