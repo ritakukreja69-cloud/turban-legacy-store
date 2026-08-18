@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ColourPaletteCard } from "@/components/ColourPalette";
+import { ColourChart } from "@/components/ColourPalette";
 import { Ornament, SiteFooter, SiteNav } from "@/components/SiteChrome";
 import { VideoFrame } from "@/components/VideoFrame";
 import { useReveal } from "@/hooks/use-reveal";
@@ -7,7 +7,6 @@ import { PRODUCTS, VIDEOS, whatsappLink } from "@/lib/catalog";
 import heroTurban from "@/assets/hero-turban.jpg";
 import legacyStore from "@/assets/legacy-store.jpg";
 import fabricStack from "@/assets/fabric-stack.jpg";
-import sardarBoy from "@/assets/sardar-boy.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
