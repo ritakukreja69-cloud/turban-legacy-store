@@ -232,7 +232,9 @@ function Index() {
         title="The Art of Tying"
         body="Watch how our fabric moves — the fall, the sheen and the crisp pech that only a truly premium dastar can hold. Every metre is chosen so the drape sits right, all day long."
         video={VIDEOS.tying}
+        video2={VIDEOS.blue}
         label="A Sikh man tying a royal blue turban"
+        label2="A royal blue dastar being tied, pech by pech"
         badge={{ top: "100+", bottom: "shades in store" }}
         cta={{
           text: "Ask us anything",
@@ -281,7 +283,9 @@ function Index() {
         title="Inside Our Shop"
         body="Shelf after shelf of turban cloth at Mahatma Gandhi Market, King Circle. Fifty years of stocking, folding and cutting fabric for families who keep coming back."
         video={VIDEOS.shop}
+        video2={VIDEOS.rubia}
         label="Camera gliding over stacks of colourful turban fabric in the shop"
+        label2="Rolls of rubia turban cloth on the shop shelves"
         flip
         cta={{
           text: "Check availability",
@@ -314,7 +318,9 @@ function Index() {
         title="For the Big Day"
         body="Weddings, Anand Karaj and family celebrations call for a turban with presence. Our heavier rubia ranges hold a tall, sharp shape from the milni right through to the last dance."
         video={VIDEOS.wedding}
+        video2={VIDEOS.tying}
         label="A Sikh groom in a maroon wedding turban with a gold kalgi"
+        label2="A groom setting the final pech of his wedding turban"
         cta={{
           text: "Plan a wedding turban",
           message: "Hello House of Turbans, I need turban fabric for a wedding. Please guide me.",
@@ -326,7 +332,9 @@ function Index() {
         title="How Voile Falls"
         body="Light, open and easy to tie. Watch the way our voile catches the air — the reason it is the everyday choice for thousands of our customers."
         video={VIDEOS.voile}
+        video2={VIDEOS.malmal}
         label="Hands unfolding a saffron voile turban fabric in sunlight"
+        label2="Soft voile fabric drifting in the light"
         flip
         cta={{
           text: "Enquire about voile",
@@ -340,7 +348,9 @@ function Index() {
         title="Malmal, Up Close"
         body="A macro look at fine malmal muslin — the featherweight weave that keeps you cool through Mumbai's summer and drapes beautifully in traditional dumala styles."
         video={VIDEOS.malmal}
+        video2={VIDEOS.voile}
         label="Macro shot of fine white malmal cotton weave"
+        label2="Fine malmal muslin catching the breeze"
         flip
         cta={{
           text: "Enquire about malmal",
@@ -353,7 +363,9 @@ function Index() {
         title="Patkas for Little Ones"
         body="Soft, bright and comfortable cloth for children — cut to size so it ties quickly before school and stays put all day."
         video={VIDEOS.patka}
+        video2={VIDEOS.blue}
         label="A father tying an orange patka for his young son"
+        label2="A boy in a bright patka running in the sun"
         cta={{
           text: "Enquire about patkas",
           message: "Hello House of Turbans, I would like to enquire about patka fabric for my child.",
@@ -366,7 +378,9 @@ function Index() {
         title="Rubia in Motion"
         body="Dense, matte and deeply coloured. Rubia holds its shape like no other cloth on our shelves — see how the light sits on the weave."
         video={VIDEOS.rubia}
+        video2={VIDEOS.wedding}
         label="Deep red rubia turban fabric turning in studio light"
+        label2="Deep coloured rubia folded into a sharp turban"
         flip
         cta={{
           text: "Enquire about rubia",
